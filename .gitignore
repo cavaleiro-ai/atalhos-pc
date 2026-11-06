@@ -1,0 +1,11 @@
+# Chave de assinatura: quem tiver este arquivo pode publicar atualizacoes do app em nome de quem o gerou.
+android/atalhospc.keystore
+android/atalhospc.keystore.senha
+
+# Saidas de compilacao e ferramentas baixadas
+android/build/
+android/tools/
+windows/build/
+
+# Biblioteca de sons: 1,6 GB de audios de terceiros, sem licenca conferida. Fica so neste PC.
+dist/biblioteca/
