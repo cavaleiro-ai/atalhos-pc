@@ -29,6 +29,33 @@ Um toque no aparelho e o programa, arquivo ou pasta abre no computador, ou o som
 
 > O aparelho é o controle: **o som sai nas caixas do PC, não no tablet**.
 
+## Como ele é
+
+### Programa do Windows
+
+Os atalhos que você arrasta para a janela aparecem no aparelho com o mesmo ícone:
+
+<p align="center"><img src="docs/prints/pc-atalhos.png" width="780" alt="Janela do Atalhos PC no Windows, aba Atalhos, com Edge, Firefox, Steam, Bloco de Notas, Paint e outras teclas"></p>
+
+<table>
+<tr>
+<td width="50%"><img src="docs/prints/pc-sons.png" alt="Aba Sons da janela do PC, com os 11 sons de exemplo e os controles de volume"></td>
+<td width="50%"><img src="docs/prints/pc-biblioteca.png" alt="Biblioteca de sons no PC, com categorias à esquerda e busca"></td>
+</tr>
+<tr>
+<td align="center"><b>Sons:</b> os pads, com volume por som e volume geral</td>
+<td align="center"><b>Biblioteca:</b> categorias, busca e prévia</td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/prints/instalador.png" alt="Primeira tela do instalador, com a saudação do Cavaleiro AI"></td>
+<td width="50%"><img src="docs/prints/saudacao.png" alt="Saudação do Cavaleiro AI na primeira abertura do programa"></td>
+</tr>
+<tr>
+<td align="center"><b>Instalador:</b> quatro passos, sem pedir administrador</td>
+<td align="center"><b>Saudação</b> na primeira abertura do programa</td>
+</tr>
+</table>
+
 ## Do que você precisa
 
 | Lado | Requisito |
@@ -156,6 +183,7 @@ atalhos-pc/
 │   └── setup-tools.ps1          baixa o JDK e as ferramentas do Android, se faltarem
 ├── assets/                      logo, ícones das categorias e scripts que geram ícones e sons
 ├── docs/
+│   ├── prints/                  imagens deste README
 │   ├── GUIA-DE-USO.md           passo a passo completo para quem vai usar
 │   ├── COMO-FUNCIONA.md         arquitetura, protocolo, segurança, instalador e compilação
 │   └── O-QUE-FOI-FEITO.md       histórico das versões, testes e decisões
