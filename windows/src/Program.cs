@@ -47,7 +47,8 @@ namespace AtalhosPC
                     catch (System.IO.IOException e) { Log.Write("Sons de exemplo: " + e.Message); }
                     Server server = new Server(store);
                     server.Player = new MciPlayer(System.IO.Path.Combine(dir, "som-sem-etiqueta"));
-                    server.Library = new Library(System.IO.Path.Combine(exeDir, "biblioteca"));
+                    server.Library = new Library(Library.ResolveRoot(store.LibraryDir, exeDir));
+                    if (store.LibraryDir != null && server.Library.Root != store.LibraryDir) Log.Write("Pasta da biblioteca não encontrada: " + store.LibraryDir);
                     server.Start();
 
                     MainForm form = new MainForm(store, server, args.Contains("--bandeja"));

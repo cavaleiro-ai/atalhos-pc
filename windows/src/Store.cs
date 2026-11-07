@@ -45,6 +45,7 @@ namespace AtalhosPC
         public bool masterMuted = false;
         public bool soundsSeeded = false;
         public bool greeted = false; // a saudacao do Cavaleiro AI ja apareceu neste PC
+        public string libraryDir; // pasta da biblioteca escolhida na janela do PC; vazia = "biblioteca" ao lado do programa
     }
 
     public static class Log
@@ -167,6 +168,12 @@ namespace AtalhosPC
         {
             get { lock (gate) return cfg.adbReverse; }
             set { lock (gate) { cfg.adbReverse = value; Save(); } }
+        }
+
+        public string LibraryDir
+        {
+            get { lock (gate) return cfg.libraryDir; }
+            set { lock (gate) { cfg.libraryDir = string.IsNullOrEmpty(value) ? null : value; Save(); } }
         }
 
         public List<Shortcut> Shortcuts()

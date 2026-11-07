@@ -12,7 +12,7 @@ namespace AtalhosPC
     {
         readonly Store store;
         readonly Server server;
-        readonly Library library;
+        Library library;
         readonly ListView categories = new ListView();
         readonly ImageList categoryImages = new ImageList();
         readonly ListView sounds = new ListView();
@@ -91,6 +91,7 @@ namespace AtalhosPC
             bar.Controls.Add(MakeButton("Ouvir", Preview));
             bar.Controls.Add(MakeButton("Parar", server.StopPreview));
             bar.Controls.Add(MakeButton("Adicionar aos meus sons", AddSelected));
+            bar.Controls.Add(MakeButton("Escolher pasta…", ChooseFolder));
             bar.Controls.Add(MakeButton("Fechar", Close));
 
             info.Dock = DockStyle.Bottom;
@@ -117,6 +118,10 @@ namespace AtalhosPC
         {
             List<LibraryCategory> found = library == null ? new List<LibraryCategory>() : library.Categories();
             categories.BeginUpdate();
+            categories.Items.Clear();
+            categoryImages.Images.Clear();
+            shown = new List<LibraryItem>();
+            sounds.VirtualListSize = 0;
             categories.Items.Add(new ListViewItem("Todas (" + found.Sum(c => c.Items.Count).ToString("N0") + ")") { Tag = "" });
             foreach (LibraryCategory c in found)
             {
@@ -133,10 +138,43 @@ namespace AtalhosPC
             {
                 search.Enabled = false;
                 info.ForeColor = Color.FromArgb(0xB0, 0x40, 0x30);
-                info.Text = "Biblioteca não instalada. Coloque as pastas de categorias em: " + (library == null ? "biblioteca" : library.Root);
+                info.Text = "Biblioteca vazia. Clique em Escolher pasta… e indique a pasta com uma subpasta por categoria. Procurei em: " + (library == null ? "biblioteca" : library.Root);
                 return;
             }
+            search.Enabled = true;
             categories.Items[0].Selected = true;
+        }
+
+        // A pasta vale para o PC e para o aparelho na hora, e fica guardada na configuracao.
+        void ChooseFolder()
+        {
+            string start = library != null && Directory.Exists(library.Root) ? library.Root : Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+            string path;
+            using (FolderBrowserDialog d = new FolderBrowserDialog { Description = "Escolha a pasta da biblioteca: uma subpasta por categoria, com os sons dentro.", SelectedPath = start, ShowNewFolderButton = false })
+            {
+                if (d.ShowDialog(this) != DialogResult.OK) return;
+                path = d.SelectedPath;
+            }
+            Library chosen = new Library(path);
+            List<LibraryCategory> found = chosen.Categories();
+            if (found.Count == 0)
+            {
+                bool loose = Directory.GetFiles(path).Any(Store.IsAudio);
+                MessageBox.Show(this, loose
+                    ? "Essa pasta tem sons soltos, sem subpastas. Escolha a pasta de cima: a biblioteca precisa de uma subpasta por categoria, com os sons dentro."
+                    : "Essa pasta não tem nenhuma subpasta com sons. A biblioteca precisa de uma subpasta por categoria, com os sons dentro.",
+                    "Atalhos PC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            server.StopPreview();
+            store.LibraryDir = path;
+            server.Library = chosen;
+            library = chosen;
+            Log.Write("Pasta da biblioteca: " + path);
+            search.Text = "";
+            FillCategories();
+            info.ForeColor = SystemColors.GrayText;
+            info.Text = found.Sum(c => c.Items.Count).ToString("N0") + " sons em " + found.Count + " categorias. O aparelho já vê esta pasta.";
         }
 
         void Fill()

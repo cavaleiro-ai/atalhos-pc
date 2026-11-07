@@ -11,7 +11,7 @@ Extraia `assets/codigo-fonte.zip` em uma pasta nova de trabalho, de preferência
 ```powershell
 android\build.ps1                  # javac, d8, aapt2, zipalign e apksigner, sem Gradle; rode antes, o APK vai dentro do instalador
 windows\build.ps1                  # feche o AtalhosPC.exe antes; gera o programa, o instalador e os dois testes
-windows\build\ProtocolTest.exe     # deve terminar com "90 ok, 0 falha(s)"; monta a janela sem mostrá-la, não abre nada nem toca som
+windows\build\ProtocolTest.exe     # deve terminar com "96 ok, 0 falha(s)"; monta a janela sem mostrá-la, não abre nada nem toca som
 windows\build\InstaladorTest.exe   # deve terminar com "56 ok, 0 falha(s)"; instala em pastas e chaves de teste e abre o assistente na tela
 ```
 

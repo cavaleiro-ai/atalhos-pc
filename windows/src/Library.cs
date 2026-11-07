@@ -1,4 +1,5 @@
-// Biblioteca de sons: cada subpasta de "biblioteca", ao lado do programa, e uma categoria. Um PNG com o nome da pasta e o icone dela.
+// Biblioteca de sons: cada subpasta da pasta da biblioteca e uma categoria. Um PNG com o nome da pasta e o icone dela.
+// A pasta e a escolhida na janela do PC ou, sem escolha, "biblioteca" ao lado do programa (onde o instalador copia).
 // O aparelho nunca manda caminho, so categoria e nome de arquivo procurados no indice: nada fora da pasta pode ser pedido.
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,18 @@ namespace AtalhosPC
         public Library(string root)
         {
             Root = root;
+        }
+
+        public static string DefaultRoot(string exeDir)
+        {
+            return System.IO.Path.Combine(exeDir, "biblioteca");
+        }
+
+        // A pasta escolhida vale enquanto existir. Se sumir (HD externo desligado, pasta movida), volta para a do programa.
+        public static string ResolveRoot(string chosen, string exeDir)
+        {
+            if (!string.IsNullOrEmpty(chosen) && Directory.Exists(chosen)) return chosen;
+            return DefaultRoot(exeDir);
         }
 
         // Le a pasta de novo: e chamado ao abrir a biblioteca, entao arquivo novo aparece sem reiniciar o programa.

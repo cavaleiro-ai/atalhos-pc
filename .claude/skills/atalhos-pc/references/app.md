@@ -91,7 +91,7 @@ No modo Automático, a ordem é: último caminho que funcionou, túnel adb, rede
 | Área | Conteúdo |
 |---|---|
 | Aba **Atalhos** | Arraste arquivos, ou use `Adicionar arquivos…`, `Adicionar pasta…`, `Abrir`, `Renomear`, `Remover`, `◀ Mover`, `Mover ▶`. |
-| Aba **Sons** | `Biblioteca…` abre as categorias, a busca, `Ouvir`, `Parar` e `Adicionar aos meus sons`. Arraste áudios, ou use `Adicionar sons…`, `Tocar`, `Parar tudo`, `Ícone…`, `Renomear`, `Remover`, mover, mais os volumes do som e geral. |
+| Aba **Sons** | `Biblioteca…` abre as categorias, a busca, `Ouvir`, `Parar`, `Adicionar aos meus sons` e `Escolher pasta…`, que aponta a pasta da biblioteca. Arraste áudios, ou use `Adicionar sons…`, `Tocar`, `Parar tudo`, `Ícone…`, `Renomear`, `Remover`, mover, mais os volumes do som e geral. |
 | **Parear tablet ou celular** | `Parear novo aparelho` mostra o código por 3 minutos. |
 | **Conexões** | Porta, IPs, Bluetooth, firewall, túnel adb e quem está conectado. |
 | **Aparelhos pareados** | `Remover aparelho selecionado` corta o acesso na hora. |

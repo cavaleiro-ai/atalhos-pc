@@ -52,7 +52,7 @@ O ícone de um som fica em `icones-sons\<id>.png`. A imagem é decodificada e re
 
 ### Biblioteca
 
-`Library.cs` lê `biblioteca\`, ao lado do `.exe`: cada subpasta com áudio é uma categoria, e `<pasta>.png` é o ícone dela. Os títulos das pastas originais, em inglês, são traduzidos no código; uma pasta nova usa o próprio nome. O índice fica na memória e é refeito a cada abertura da biblioteca.
+`Library.cs` lê a pasta da biblioteca: a escolhida em **Escolher pasta…**, na janela da biblioteca do PC (`libraryDir` no `config.json`), ou, sem escolha ou se ela sumir, `biblioteca\` ao lado do `.exe`, onde o instalador copia. Escolher outra pasta troca `Server.Library` na hora, e o aparelho já vê a pasta nova na mesma conexão. Cada subpasta com áudio é uma categoria, e `<pasta>.png` é o ícone dela. Os títulos das pastas originais, em inglês, são traduzidos no código; uma pasta nova usa o próprio nome. O índice fica na memória e é refeito a cada abertura da biblioteca.
 
 - **Busca:** compara sem acento e sem maiúscula, e exige todas as palavras, em qualquer ordem.
 - **Páginas:** o aparelho recebe no máximo 200 itens por pedido e pede mais ao rolar. A janela do PC usa uma `ListView` virtual, que só monta as linhas visíveis.
@@ -183,7 +183,7 @@ No modo silencioso, a biblioteca só é copiada com `/biblioteca`. No assistente
 | Atalhos, aparelhos, opções | `%APPDATA%\AtalhosPC\config.json` |
 | Ícones | `%APPDATA%\AtalhosPC\icones\` e `icones-sons\` |
 | Sons de exemplo copiados | `%APPDATA%\AtalhosPC\sons\` |
-| Biblioteca de sons | `biblioteca\`, ao lado do `.exe` |
+| Biblioteca de sons | A pasta escolhida em **Escolher pasta…** (`libraryDir`), ou `biblioteca\` ao lado do `.exe` |
 | Cópias de MP3 sem etiqueta | `%APPDATA%\AtalhosPC\som-sem-etiqueta\` |
 | Tema, tamanhos e nomes | Preferências do app, em cada aparelho |
 | Registro de conexões e aberturas | `%APPDATA%\AtalhosPC\atalhos.log` (girado em 512 KB) |
@@ -198,7 +198,7 @@ Tudo sem Visual Studio nem Android Studio.
 
 ```powershell
 windows\build.ps1
-windows\build\ProtocolTest.exe     # protocolo, sons, biblioteca e janela: 90 testes
+windows\build\ProtocolTest.exe     # protocolo, sons, biblioteca e janela: 96 testes
 windows\build\InstaladorTest.exe   # instalador em pastas e chaves de teste: 56 testes
 ```
 

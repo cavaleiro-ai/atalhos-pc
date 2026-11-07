@@ -48,7 +48,7 @@ namespace AtalhosPC
 
         public Func<string, string> Launcher = Launch.Open;
         public ISoundPlayer Player;
-        public Library Library;
+        public volatile Library Library; // trocada pela janela do PC quando o usuario escolhe outra pasta
         public string TcpState = "Parado";
         public string BluetoothState = "Parado";
         public event Action StateChanged;

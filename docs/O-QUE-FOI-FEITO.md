@@ -70,6 +70,17 @@ Registro completo do projeto: o que existe, como foi testado e o que ficou de fo
 - **Só no Windows:** o app do tablet continua na versão 2.2, sem mudança. O protocolo não mudou.
 - **Skill:** `instalar.ps1` agora roda o instalador em modo silencioso, e a skill leva o `Instalar-AtalhosPC.exe`.
 
+## Versão 2.4: escolher a pasta da biblioteca
+
+**Problema relatado (06/11/2026):** em **Sons > + Adicionar > Biblioteca de sons**, o tablet não mostrava a biblioteca.
+
+- **Causa:** o usuário tinha instalado o programa pelo instalador, sem copiar a biblioteca. O programa instalado procurava a pasta `biblioteca` só ao lado de si, em `%LOCALAPPDATA%\Programs\AtalhosPC`, e ela não existia: os 13.528 áudios continuavam em `dist\biblioteca`. Quem baixa o instalador do GitHub cai no mesmo caso, porque os áudios não vêm no download, e a única saída era rodar o instalador de novo ou copiar arquivos para dentro da pasta do programa.
+- **Correção:** a janela **Biblioteca…** do PC ganhou **Escolher pasta…**. A pasta escolhida fica em `libraryDir`, no `config.json`, e vale na hora no PC e no aparelho, sem copiar nada. Uma pasta sem subpastas com áudio é recusada com explicação. Sem escolha, ou se a pasta escolhida sumir, o programa volta para a `biblioteca` ao lado do `.exe`, onde o instalador copia.
+- **Mensagem:** a biblioteca vazia no PC passou a dizer o que fazer, antes do caminho, para não ser cortada.
+- **Só no Windows:** o app continua na 2.2, e o protocolo não mudou.
+- **No PC do usuário:** o programa instalado foi atualizado para a 2.4, com os mesmos 21 atalhos e 25 sons, e a pasta escolhida é `dist\biblioteca`. No tablet, a biblioteca abriu com as 14 categorias.
+- **Testes:** 96 do protocolo, 6 deles novos (pasta escolhida, pasta que sumiu, configuração guardada e troca na mesma conexão), e 56 do instalador.
+
 ## Skill
 
 `.claude/skills/atalhos-pc/` traz tudo para repetir a instalação em outro aparelho, mesmo copiada para outro computador:
@@ -172,6 +183,7 @@ Os tempos incluem o início do comando de teste no aparelho.
 | App ficava fechado após instalar | A instalação encerra o app | O script reabre o app |
 | Teste do instalador ficou parado para sempre | `Start-Process -Wait` do PowerShell 5.1 espera também os filhos, e o programa aberto por `/abrir` continua rodando. O instalador já tinha terminado em menos de 1 s | Esperar só o processo do instalador (`-PassThru` e `.WaitForExit()`), também no `instalar.ps1` (versão 2.3) |
 | Saudação modal travava o teste da janela | `ShowDialog` roda um laço próprio, e o teste esperava dentro dele | O teste inspeciona e fecha a saudação por `Invoke` de outra thread |
+| Biblioteca vazia no tablet depois de instalar | O programa instalado só procurava `biblioteca` ao lado de si, e o instalador não a copiou | **Escolher pasta…** na janela da biblioteca, guardada no `config.json` (versão 2.4) |
 
 ## Arquivos
 

@@ -169,7 +169,11 @@ Os 11 sons de exemplo são testes: cachorro, gato, galo, pato, sapo, aplausos, v
 
 Se ele pedir que você baixe sons, como memes, use só fontes com licença clara e registre o crédito. Muitos áudios de meme vêm de filmes, programas ou músicas protegidos: diga isso e deixe a escolha com ele. Não contorne bloqueios de sites.
 
-**Biblioteca de sons.** A skill não traz os áudios: a coleção original tem 1,6 GB e conteúdo de terceiros, sem licença conferida. Traz só os ícones das categorias, e a biblioteca fica vazia até o usuário indicar uma pasta dele, com uma subpasta por categoria:
+**Biblioteca de sons.** A skill não traz os áudios: a coleção original tem 1,6 GB e conteúdo de terceiros, sem licença conferida. Traz só os ícones das categorias, e a biblioteca fica vazia até o usuário indicar uma pasta dele, com uma subpasta por categoria.
+
+O caminho mais simples, a partir do programa 2.4: o usuário abre **Sons > Biblioteca… > Escolher pasta…** na janela do PC e escolhe a pasta que já tem. Nada é copiado, vale na hora no aparelho e fica em `libraryDir`, no `config.json`. Enquanto essa pasta existir, ela tem prioridade sobre a `biblioteca\` ao lado do programa. Sem pasta escolhida, ou se ela sumir, o programa usa a `biblioteca\` ao lado do `.exe`. Em 06/11/2026, um usuário instalou pelo instalador sem marcar a biblioteca e o app mostrou a biblioteca vazia: é esse o sintoma.
+
+Para copiar a coleção para junto do programa:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\instalar.ps1 -SoBiblioteca -Biblioteca "C:\pasta\sons"
@@ -177,7 +181,7 @@ powershell -ExecutionPolicy Bypass -File scripts\instalar.ps1 -SoBiblioteca -Bib
 
 O comando copia as subpastas para `biblioteca\`, ao lado do programa, sem fechá-lo nem alterar o original. Se o programa foi instalado em outro lugar, use também `-Destino`. Na instalação completa, `instalar.ps1 -Biblioteca PASTA` (sem `-SoBiblioteca`) faz o instalador copiar a biblioteca junto, conferindo o espaço livre. Assim, ela também sai ao desinstalar. Só copie uma coleção que o usuário já tenha, e diga que áudios de terceiros servem para uso pessoal. Não baixe coleções por conta própria.
 
-Para conferir, abra **Biblioteca…** na aba **Sons** do PC, ou **+ Adicionar** > **Biblioteca de sons** no app: as categorias precisam aparecer com a quantidade certa. Avise antes de testar **Ouvir**, que toca no PC, e meça com `medir_som.ps1`. O app e o programa precisam ser da versão 2.2 ou mais nova.
+Para conferir, abra **Biblioteca…** na aba **Sons** do PC, ou **+ Adicionar** > **Biblioteca de sons** no app: as categorias precisam aparecer com a quantidade certa. Avise antes de testar **Ouvir**, que toca no PC, e meça com `medir_som.ps1`. O app e o programa precisam ser da versão 2.2 ou mais nova, e o programa da 2.4 para ter **Escolher pasta…**.
 
 Atalhos: ele arrasta para a aba **Atalhos** no PC, ou usa **Adicionar** no app.
 

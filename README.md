@@ -122,21 +122,21 @@ Toque em **Sons** no topo do app. Os 11 sons de exemplo já vêm prontos. Para a
 
 ### 7. Biblioteca de sons (opcional)
 
-A biblioteca é uma pasta de áudios no PC que o app mostra por categoria, com busca e prévia. **Os áudios não vêm no download**, porque cada um deve usar sons que tem direito de usar. Para montar a sua:
+A biblioteca é uma pasta de áudios no PC que o app mostra por categoria, com busca e prévia. **Os áudios não vêm no download**, porque cada um deve usar sons que tem direito de usar. Monte a sua em qualquer lugar do PC, com uma subpasta por categoria:
 
 ```
-%LOCALAPPDATA%\Programs\AtalhosPC\     (pasta do programa instalado)
-├── AtalhosPC.exe
-└── biblioteca\
-    ├── Memes\             ← uma subpasta por categoria
-    │   ├── som1.mp3
-    │   └── som2.mp3
-    ├── Memes.png          ← ícone da categoria (opcional)
-    ├── Efeitos sonoros\
-    └── Efeitos sonoros.png
+Minha biblioteca\          ← a pasta que você vai escolher
+├── Memes\                 ← uma subpasta por categoria
+│   ├── som1.mp3
+│   └── som2.mp3
+├── Memes.png              ← ícone da categoria (opcional)
+├── Efeitos sonoros\
+└── Efeitos sonoros.png
 ```
 
-Os ícones prontos estão em [`assets/icones-biblioteca`](assets/icones-biblioteca). Também dá para deixar a pasta em qualquer lugar e apontá-la no instalador, em **Copiar a biblioteca de sons**. Depois, abra a biblioteca pelo botão **Biblioteca…** no PC, ou em **Sons > + Adicionar > Biblioteca de sons** no aparelho.
+Depois, na janela do PC, abra **Sons > Biblioteca… > Escolher pasta…** e escolha a pasta de cima, a que tem as subpastas. A biblioteca aparece na hora no PC e no aparelho, em **Sons > + Adicionar > Biblioteca de sons**, e o programa lembra a pasta. Os ícones prontos estão em [`assets/icones-biblioteca`](assets/icones-biblioteca).
+
+Outra forma é o instalador copiar a pasta para junto do programa, em **Copiar a biblioteca de sons**. Sem pasta escolhida, o programa procura uma pasta `biblioteca` ao lado do `AtalhosPC.exe`.
 
 O guia completo, com todas as telas, cores e problemas comuns, está em **[docs/GUIA-DE-USO.md](docs/GUIA-DE-USO.md)**.
 
@@ -153,6 +153,7 @@ O guia completo, com todas as telas, cores e problemas comuns, está em **[docs/
 | O Android bloqueia a instalação do APK | Autorize a instalação pelo navegador ou pelo app de arquivos. |
 | O pad não toca | O Windows não abriu o formato. Converta para MP3. |
 | Não ouço nada | Confira o volume e a saída de áudio do Windows, e se o botão **Mudo** do app está aceso. |
+| A biblioteca aparece vazia no aparelho | O programa não achou a pasta. No PC, abra **Sons > Biblioteca… > Escolher pasta…** e escolha a pasta com uma subpasta por categoria. Precisa do programa 2.4 ou mais novo. |
 | Erro no instalador | O motivo aparece na tela final, e o registro fica em `%TEMP%\AtalhosPC-instalador.log`. |
 
 ## Desinstalar
@@ -219,7 +220,7 @@ Não precisa de Visual Studio nem de Android Studio.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File windows\build.ps1
-windows\build\ProtocolTest.exe      # 90 testes do protocolo, sons e biblioteca
+windows\build\ProtocolTest.exe      # 96 testes do protocolo, sons e biblioteca
 windows\build\InstaladorTest.exe    # 56 testes do instalador
 ```
 
@@ -248,7 +249,7 @@ Bancada: Galaxy Tab A8 (Android 14) e Windows 10 Pro.
 | Som saindo no PC, volume por som e geral, mudo, parar, sons sobrepostos | Testados no aparelho real, medindo a saída de áudio do Windows |
 | Temas, tamanhos, esconder nomes, ícone por emoji | Testados no aparelho real |
 | Biblioteca de sons | Testada com 13.528 áudios, no PC e no tablet |
-| Protocolo e ataques (código errado, mensagem adulterada, repetição, aparelho removido) | 90 testes automáticos |
+| Protocolo e ataques (código errado, mensagem adulterada, repetição, aparelho removido) | 96 testes automáticos |
 | Instalador e desinstalador | 56 testes automáticos e testes de ponta a ponta: instalar, atualizar por cima e desinstalar |
 | **Wi-Fi** | **Não testado de ponta a ponta.** Usa o mesmo código da Ancoragem USB, que funciona. |
 | **Bluetooth** | **Não testado de ponta a ponta.** O PC da bancada não tem adaptador. |
@@ -268,7 +269,7 @@ Se testar em outro aparelho, abra uma [issue](https://github.com/cavaleiro-ai/at
 
 | Parte | Versão |
 |---|---|
-| Programa do PC e instalador | 2.3 |
+| Programa do PC e instalador | 2.4 |
 | App Android | 2.2 |
 
 O histórico completo está em [docs/O-QUE-FOI-FEITO.md](docs/O-QUE-FOI-FEITO.md).

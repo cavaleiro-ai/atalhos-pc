@@ -106,7 +106,7 @@ namespace AtalhosPC
         {
             Console.WriteLine("Conteudo do instalador");
             List<string> files = Installer.PayloadFiles();
-            Check("versao " + AppInfo.Version, AppInfo.Version == "2.3");
+            Check("versao " + AppInfo.Version, AppInfo.Version == "2.4");
             Check("traz o programa igual ao de dist", files.Contains(Installer.ExeName) && PayloadHash(Installer.ExeName) == Hash(Path.Combine(dist, "AtalhosPC.exe")));
             Check("traz o app igual ao de dist", files.Contains(Installer.ApkName) && PayloadHash(Installer.ApkName) == Hash(Path.Combine(dist, "AtalhosPC.apk")));
             int sons = Directory.GetFiles(Path.Combine(dist, "sons")).Length;
@@ -148,11 +148,11 @@ namespace AtalhosPC
             Check("lista tem programa, desinstalador e biblioteca", list.Contains(Installer.ExeName) && list.Contains(Installer.UninstallerName) && list.Contains(@"biblioteca\Memes\a.mp3") && list.Contains(Installer.ListName));
             Check("atalho da area de trabalho abre o programa", Installer.ShortcutTarget(Path.Combine(plan.DesktopDir, Installer.LinkName)) == exe);
             Check("atalho do menu Iniciar abre o programa", Installer.ShortcutTarget(Path.Combine(plan.StartMenuDir, Installer.LinkName)) == exe);
-            Check("Aplicativos: nome, versao e editor", (string)Reg(plan.UninstallKey, "DisplayName") == "Atalhos PC" && (string)Reg(plan.UninstallKey, "DisplayVersion") == "2.3" && (string)Reg(plan.UninstallKey, "Publisher") == "Cavaleiro AI");
+            Check("Aplicativos: nome, versao e editor", (string)Reg(plan.UninstallKey, "DisplayName") == "Atalhos PC" && (string)Reg(plan.UninstallKey, "DisplayVersion") == "2.4" && (string)Reg(plan.UninstallKey, "Publisher") == "Cavaleiro AI");
             Check("Aplicativos: pasta e desinstalador", (string)Reg(plan.UninstallKey, "InstallLocation") == folder && (string)Reg(plan.UninstallKey, "UninstallString") == "\"" + Path.Combine(folder, Installer.UninstallerName) + "\" /desinstalar");
             Check("Aplicativos: tamanho estimado", (int)Reg(plan.UninstallKey, "EstimatedSize") > 100);
             Check("iniciar com o Windows aponta para a copia instalada, na bandeja", (string)Reg(plan.RunKey, plan.RunValue) == "\"" + exe + "\" --bandeja");
-            Check("instalador acha a pasta instalada", Installer.InstalledFolder(plan) == folder && Installer.InstalledVersion(plan) == "2.3");
+            Check("instalador acha a pasta instalada", Installer.InstalledFolder(plan) == folder && Installer.InstalledVersion(plan) == "2.4");
 
             Console.WriteLine("Atualizar por cima");
             File.WriteAllText(Path.Combine(folder, "sons", "Aplausos.mp3"), "estragado");

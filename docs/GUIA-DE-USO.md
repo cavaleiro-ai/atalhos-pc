@@ -113,11 +113,12 @@ A biblioteca é uma pasta de áudios que fica no PC, separada em categorias, com
 
 **Os áudios da biblioteca não vêm no download.** Quem baixa recebe só os 11 sons de exemplo, que têm licença livre. A biblioteca é montada com os seus próprios sons:
 
-1. Crie uma pasta chamada `biblioteca` ao lado do `AtalhosPC.exe`. Na instalação padrão, fica em `%LOCALAPPDATA%\Programs\AtalhosPC\biblioteca`.
+1. Crie uma pasta em qualquer lugar do PC, como `Músicas\Minha biblioteca`.
 2. Dentro dela, crie uma subpasta por categoria, como `Memes` ou `Efeitos sonoros`, e copie os áudios para elas. Só os arquivos que ficam direto na subpasta contam.
-3. Para dar um ícone à categoria, coloque um PNG com o mesmo nome da subpasta ao lado dela, como `biblioteca\Memes.png`. A pasta `assets/icones-biblioteca` do repositório tem 14 ícones prontos.
+3. Para dar um ícone à categoria, coloque um PNG com o mesmo nome da subpasta ao lado dela, como `Minha biblioteca\Memes.png`. A pasta `assets/icones-biblioteca` do repositório tem 14 ícones prontos.
+4. No PC, abra a aba **Sons**, clique em **Biblioteca…** e depois em **Escolher pasta…**. Escolha a pasta de cima, a que tem as subpastas. A biblioteca aparece na hora, no PC e no aparelho, e o programa lembra a pasta nas próximas vezes.
 
-Outra forma é deixar a pasta pronta em qualquer lugar e apontá-la no instalador, em **Copiar a biblioteca de sons**. Ele copia os áudios e completa os ícones que faltarem.
+Outra forma é deixar o instalador copiar a pasta para junto do programa, em **Copiar a biblioteca de sons**. Ele copia os áudios e completa os ícones que faltarem. Sem pasta escolhida, o programa procura uma pasta `biblioteca` ao lado do `AtalhosPC.exe`, que é onde o instalador copia. Se a pasta escolhida sumir, como num HD externo desligado, ele volta a procurar ao lado do programa.
 
 O programa traduz 14 nomes de pasta em inglês: `Anime & Manga`, `Games`, `Memes`, `Movies`, `Music`, `Politics`, `Pranks`, `Reactions`, `Sound Effects`, `Sports`, `Television`, `Tiktok Trends`, `Viral` e `Whatsapp Audios`. Qualquer outro nome aparece como está.
 
@@ -142,7 +143,7 @@ Cada som entra com o ícone da categoria e com volume de 80%. Depois, ele funcio
 
 A prévia usa o volume geral, então nada se ouve com **Mudo** ligado. A biblioteca continua disponível com **Permitir navegar** desligado, porque só alcança a própria pasta.
 
-**Colocar mais sons:** crie ou use uma pasta dentro de `biblioteca`, ao lado do `AtalhosPC.exe`, e copie os áudios para ela. A pasta vira uma categoria com o próprio nome. Um PNG com o mesmo nome da pasta, ao lado dela, vira o ícone. Os sons novos aparecem na próxima vez que você abrir a biblioteca.
+**Colocar mais sons:** crie ou use uma subpasta dentro da pasta da biblioteca e copie os áudios para ela. A pasta vira uma categoria com o próprio nome. Um PNG com o mesmo nome da pasta, ao lado dela, vira o ícone. Os sons novos aparecem na próxima vez que você abrir a biblioteca.
 
 Segure um pad para **ajustar o volume** sem tocar, **trocar o ícone** (emoji ou imagem do PC), renomear, mover, criar um atalho na tela inicial ou remover. Remover não apaga o arquivo do PC.
 
@@ -178,7 +179,7 @@ Toque em **Ajustes**. Tudo vale na hora e fica guardado só naquele aparelho.
 | O PC está numa rede marcada como Pública e não conecta | A regra criada pelo aviso do Windows pode valer só para redes Particulares. Use o botão do firewall no programa, que libera a sub-rede local em qualquer perfil. |
 | `Parear de novo` | Gere um código no PC e pareie outra vez. |
 | As teclas somem ao trocar de aba ou mudar algo em Ajustes | Era um erro da versão 2.0. Instale a versão atual do app. Seus atalhos não se perdem, pois ficam no PC. |
-| A biblioteca diz que não está instalada | A pasta `biblioteca` precisa estar ao lado do `AtalhosPC.exe`. Rode o instalador de novo e marque **Copiar a biblioteca de sons**, ou mova a pasta para junto do programa. |
+| A biblioteca aparece vazia, ou o app diz que ela não está instalada | O programa não achou a pasta dos sons. No PC, abra **Sons > Biblioteca… > Escolher pasta…** e escolha a pasta com uma subpasta por categoria. Isso vale na hora, também no aparelho. Precisa do programa 2.4 ou mais novo; antes dele, a pasta `biblioteca` tinha de ficar ao lado do `AtalhosPC.exe`. |
 | O instalador diz que não conseguiu fechar o Atalhos PC | Feche pelo ícone perto do relógio (botão direito, **Sair**) e rode o instalador de novo. |
 | O instalador diz que falta espaço | A biblioteca precisa do mesmo espaço que ocupa na pasta de origem, mais 50 MB. Libere espaço ou instale sem a biblioteca. |
 | O instalador diz que não tem permissão na pasta | A pasta escolhida é protegida, como `C:\Program Files`. Use a pasta sugerida. |

@@ -286,6 +286,23 @@ namespace AtalhosPC
                 File.WriteAllBytes(Path.Combine(root, "Games", "Novo.mp3"), new byte[8]);
                 Dictionary<string, object> again = c.Ask(D("t", "lib_categories"));
                 Check("arquivo novo aparece ao abrir a biblioteca de novo", Json.Int(again, "total", 0) == 253);
+
+                // Programa instalado sem a biblioteca ao lado: o usuario escolhe a pasta na janela do PC (2.4).
+                string exeDir = Path.Combine(dir, "programa");
+                Check("sem pasta escolhida: biblioteca ao lado do programa", Library.ResolveRoot(null, exeDir) == Path.Combine(exeDir, "biblioteca"));
+                Check("pasta escolhida vale quando existe", Library.ResolveRoot(root, exeDir) == root);
+                Check("pasta escolhida que sumiu volta para a do programa", Library.ResolveRoot(Path.Combine(dir, "sumiu"), exeDir) == Path.Combine(exeDir, "biblioteca"));
+                store.LibraryDir = root;
+                Check("pasta escolhida fica na configuracao", new Store(store.Dir).LibraryDir == root);
+                store.LibraryDir = "";
+                Check("pasta vazia limpa a escolha", store.LibraryDir == null && new Store(store.Dir).LibraryDir == null);
+
+                string other = Path.Combine(dir, "outra-biblioteca");
+                Directory.CreateDirectory(Path.Combine(other, "Viral"));
+                File.WriteAllBytes(Path.Combine(other, "Viral", "Uau.mp3"), new byte[8]);
+                server.Library = new Library(other);
+                Dictionary<string, object> swapped = c.Ask(D("t", "lib_categories"));
+                Check("trocar a pasta vale na hora, na mesma conexao", Items(swapped, "categories").Length == 1 && Json.Int(swapped, "total", 0) == 1);
             }
             server.Library = null;
         }
